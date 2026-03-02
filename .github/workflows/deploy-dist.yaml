@@ -11,6 +11,10 @@ jobs:
     steps:
     - name: Cloning repository
       uses: actions/checkout@v6
+    - name: Set up Node.js and cache node modules
+      uses: ./.github/actions/setupnode
+      with:
+        node-version: '14'
     - name: Run tests
       run: npm test
   build:
@@ -19,18 +23,10 @@ jobs:
     steps:
     - name: Cloning repository
       uses: actions/checkout@v6
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
+    - name: Set up Node.js and cache node modules
+      uses: ./.github/actions/setupnode
       with:
         node-version: '14'
-    - name: cache node modules
-      uses: actions/cache@v3
-      with:
-        path: node_modules
-        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-    - name: Install dependencies
-      if: steps.cache-node-modules.outputs.cache-hit != 'true'
-      run: npm install
     - name: Build project
       run: npm run build
   deploy:
