@@ -9,8 +9,8 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - name: Cloning repository
-      uses: actions/checkout@v6
+    # - name: Cloning repository
+    #   uses: actions/checkout@v6
     - name: Set up Node.js and cache node modules
       uses: ./.github/actions/setupnode
       with:
@@ -21,8 +21,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: test
     steps:
-    - name: Cloning repository
-      uses: actions/checkout@v6
+    # - name: Cloning repository
+    #   uses: actions/checkout@v6
     - name: Set up Node.js and cache node modules
       uses: ./.github/actions/setupnode
       with:
@@ -33,8 +33,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-    - name: Cloning repository
-      uses: actions/checkout@v6
+    # - name: Cloning repository
+    #   uses: actions/checkout@v6
     - name: Deploy to GitHub Pages
       run: echo "Deploying to GitHub Pages..."
 
